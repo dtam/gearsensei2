@@ -10,8 +10,8 @@
             <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/gearcloset']">
             <i class="right floated icon archive" ></i> Inventory</a>
         <div class="right item">
-          <a class="" (click)="auth.login()" *ngIf="!auth.authenticated()" >Log-in</a>
-          <a class="" (click)="auth.logout()" *ngIf="auth.authenticated()" [routerLink]="['']">Logout</a>
+          <a class="ui button basic primary" (click)="auth.login()" *ngIf="!auth.authenticated()" >Log-in</a>
+          <a class="ui button basic" (click)="auth.logout()" *ngIf="auth.authenticated()" [routerLink]="['']">Logout</a>
         </div>
     </div>
   </div>

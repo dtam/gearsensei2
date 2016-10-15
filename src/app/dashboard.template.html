@@ -68,31 +68,30 @@
 <button class="fluid ui button blue" *ngIf="!createNew" (click)="createNew=true">Plan a trip</button>
 
 <div class="ui divided items">
-  <div class="item" *ngFor="let trip of trips | async">
-    <div class="">
-      <i class="massive image icon"></i>
-    </div>
+<div class="ui cards centered">
+  <div class="card" *ngFor="let trip of trips | async" >
     <div class="content">
-   <div class="ui right floated vertical buttons">
-  <button class="ui grey button" (click)="select(trip)">
-          Edit Details
-          <i class="right chevron icon"></i>
-  </button>
-  <button class="ui green button">
-             Edit Gear
-          <i class="right chevron icon"></i>
-  </button>
-</div>
-      <a class="header">{{trip.name}}</a>
+    <h5 class="ui header">
+         <i class="circular small inverted tree olive icon" ></i> 
+  <div class="content">
+    {{ trip.name }}
+    <div class="sub header">{{ trip.description }}</div>
+  </div>
+</h5>
+
       <div class="meta">
-        <span class="cinema">{{trip.date | date:'shortDate'}}</span>
+        
       </div>
       <div class="description">
-        <p>{{trip.description}}</p>
-      </div>
-      <div class="extra">
+        {{trip.date | date:'shortDate'}} - {{trip.duration}} nights
       </div>
     </div>
+          <div class="extra content">
+              <div class="ui two buttons">
+        <div class="ui blue basic button" (click)="select(trip)">Edit Details</div>
+        <div class="ui green basic button">Edit Gear</div>
+      </div>
+      </div>
   </div>
 </div>
 </div>

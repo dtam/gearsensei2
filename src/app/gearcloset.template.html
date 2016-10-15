@@ -84,22 +84,27 @@
 <div class="ui cards centered">
   <div class="card" *ngFor="let item of items | async" >
     <div class="content">
-    <i class="right floated large icon configure grey" (click)="select(item)"></i>
-      <div class="header">
-       <i class="circular small inverted icon" [ngClass]="{'Shelter': 'teal home','Food':'olive food','Sleep':'blue hotel','Pack':'orange travel'}[item.category]"></i> {{ item.name }}
+    <h5 class="ui header">
+         <i class="circular small inverted icon" [ngClass]="{'Shelter': 'teal home','Food':'olive food','Sleep':'blue hotel','Pack':'orange travel'}[item.category]"></i> 
+  <div class="content">
+    {{ item.name }}
+    <div class="sub header">{{ item.brand }}</div>
+  </div>
+</h5>
+      <div class="ui two buttons">
+        <div class="ui blue basic button">{{ item.price | currency:'USD':true:'1.2-2' }}</div>
+        <div class="ui green basic button">{{ item.weight | number:'1.1-5' }} oz</div>
       </div>
       <div class="meta">
-        {{ item.brand }}
+        
       </div>
       <div class="description">
         
       </div>
     </div>
     <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui blue basic button">{{ item.price | currency:'USD':true:'1.2-2' }}</div>
-        <div class="ui green basic button">{{ item.weight | number:'1.1-5' }} oz</div>
-      </div>
+
+              <div class="ui fluid basic button" (click)="select(item)">Edit</div>
     </div>
   </div>
 </div>
