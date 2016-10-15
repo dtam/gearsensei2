@@ -13,45 +13,62 @@ import 'rxjs/add/operator/map';
 
 export class DashboardComponent {
   message: string;
-  items: FirebaseListObservable<any[]>;
-  item: Object;
-  newItem: Object;
+  trips: FirebaseListObservable<any[]>;
+  trip: Object;
+  newTrip: Object;
   user: Object;
+  createNew: boolean;
+  editItem: boolean;
   constructor(private auth: Auth, private http: Http, private authHttp: AuthHttp, af: AngularFire) {
-        this.items = af.database.list('items',{
+        this.trips = af.database.list('trips',{
           query: {
             orderByChild: 'userId',
             equalTo: auth.getUser()["uid"]
           }
         });
-        this.item = {};
+        this.createNew = false;
+        this.editItem = false;
+        this.trip = {};
         this.user = auth.getUser();
-        this.newItem = {
+        this.newTrip = {
           userId: this.user["uid"]
         };
 
   }
-  create(newName: string, newBrand: string, newPrice: number, newWeight: number) {
-    this.items.push(this.newItem);
-    this.newItem = {
+  cancelCreate() {
+     this.newTrip = {
           userId: this.user["uid"]
         };
+    this.createNew = false;
   }
-  select(item: Object) {
-    this.item = item;
+  cancelEdit() {
+    this.trip = {};
+    this.editItem = false;
+  }
+  create(newName: string, newBrand: string, newPrice: number, newWeight: number) {
+    this.trips.push(this.newTrip);
+    this.newTrip = {
+          userId: this.user["uid"]
+        };
+    this.createNew = false;
+  }
+  select(trip: Object) {
+    this.trip = trip;
+    this.editItem = true;
   }
   updateItem() {
-    this.items.update(this.item["$key"], {
-      name: this.item["name"],
-      brand: this.item["brand"],
-      price: this.item["price"],
-      weight: this.item["weight"],
-      category: this.item["category"]
+    this.trips.update(this.trip["$key"], {
+      name: this.trip["name"],
+      date: this.trip["date"],
+      duration: this.trip["duration"],
+      description: this.trip["description"]
     });
-    this.item = {};
+    this.trip = {};
+    this.editItem = false;
   }
   delete() {
-    this.items.remove(this.item["$key"]);
-    this.item = {};
+    this.trips.remove(this.trip["$key"]);
+    this.trip = {};
+    this.editItem = false;
   }
 };

@@ -1,11 +1,14 @@
 <body>
-
   <div class="ui fixed menu">
     <div class="ui container">
       <a [routerLink]="['']" class="header item">
         GearSensei
       </a>
-      <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/dashboard']">Dashboard</a>
+      <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/dashboard']">
+      <i class="right floated icon road" ></i>
+      Trips</a>
+            <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/gearcloset']">
+            <i class="right floated icon archive" ></i> Inventory</a>
         <div class="right item">
           <a class="" (click)="auth.login()" *ngIf="!auth.authenticated()" >Log-in</a>
           <a class="" (click)="auth.logout()" *ngIf="auth.authenticated()" [routerLink]="['']">Logout</a>

@@ -3,12 +3,14 @@ import { BrowserModule  }      from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgSemanticModule } from "ng-semantic";
+import { DatePicker } from 'ng2-datepicker/ng2-datepicker';
 
 import { AUTH_PROVIDERS }      from 'angular2-jwt';
 
 import { AppComponent }        from './app.component';
 import { HomeComponent }       from './home.component';
 import { DashboardComponent } from './dashboard.component';
+import { GearclosetComponent } from './gearcloset.component';
 import { AuthGuard } from './shared/auth.guard';
 import { routing,
          appRoutingProviders } from './app.routes';
@@ -32,7 +34,9 @@ export const firebaseConfig = {
     declarations: [
         AppComponent,
         HomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        GearclosetComponent,
+        DatePicker
     ],
     providers:    [
         appRoutingProviders,
