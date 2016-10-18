@@ -4,10 +4,10 @@
       <a [routerLink]="['']" class="header item">
         GearSensei
       </a>
-      <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/dashboard']">
+      <a class="item" *ngIf="auth.authenticated()" routerLink="/dashboard" routerLinkActive="active">
       <i class="right floated icon road" ></i>
       Trips</a>
-            <a class="item" *ngIf="auth.authenticated()" [routerLink]="['/gearcloset']">
+            <a class="item" *ngIf="auth.authenticated()" routerLink="/gearcloset" routerLinkActive="active">
             <i class="right floated icon archive" ></i> Inventory</a>
         <div class="right item">
           <a class="ui button basic primary" (click)="auth.login()" *ngIf="!auth.authenticated()" >Log-in</a>

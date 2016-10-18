@@ -4,6 +4,7 @@ import { FormsModule }         from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgSemanticModule } from "ng-semantic";
 import { DatePicker } from 'ng2-datepicker/ng2-datepicker';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AUTH_PROVIDERS }      from 'angular2-jwt';
 
@@ -11,7 +12,10 @@ import { AppComponent }        from './app.component';
 import { HomeComponent }       from './home.component';
 import { DashboardComponent } from './dashboard.component';
 import { GearclosetComponent } from './gearcloset.component';
+import { TripdetailComponent } from './trip/tripdetail.component';
+import { ItemcardComponent } from './items/itemcard.component';
 import { AuthGuard } from './shared/auth.guard';
+import { IterablePipe } from './shared/iterable.pipe';
 import { routing,
          appRoutingProviders } from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
@@ -36,7 +40,10 @@ export const firebaseConfig = {
         HomeComponent,
         DashboardComponent,
         GearclosetComponent,
-        DatePicker
+        TripdetailComponent,
+        ItemcardComponent,
+        DatePicker,
+        IterablePipe
     ],
     providers:    [
         appRoutingProviders,
@@ -50,7 +57,8 @@ export const firebaseConfig = {
         FormsModule,
         HttpModule,
         JsonpModule,
-        NgSemanticModule
+        NgSemanticModule,
+        ChartsModule
     ],
     bootstrap:    [AppComponent],
 })

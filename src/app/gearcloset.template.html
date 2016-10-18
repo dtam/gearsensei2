@@ -1,112 +1,99 @@
 <form class="ui form" #newItemForm="ngForm" (ngSubmit)="create()" *ngIf="createNew">
-<h4 class="ui horizontal divider header">
+    <h4 class="ui horizontal divider header">
   <i class="tag icon"></i>
   Add Item
 </h4>
-  <div class="field">
-    <label>Brand</label>
-    <input [(ngModel)]="newItem.brand" type="text" name="brand" placeholder="Brand">
-  </div>
-  <div class="field">
-    <label>Name</label>
-    <input [(ngModel)]="newItem.name" required type="text" name="name" placeholder="Name">
-  </div>
-  <div class="field">
-    <label>Weight</label>
-    <input [(ngModel)]="newItem.weight" required type="decimal" name="weight" placeholder="Weight (oz)">
-  </div>
-  <div class="field">
-    <label>Price</label>
-    <input [(ngModel)]="newItem.price" icon="dollar" type="decimal" name="price" placeholder="Price">
-  </div>
     <div class="field">
-    <label>Category</label>
-      <sm-select name="category"
-      [(model)]="newItem.category"
-    placeholder="Select category..." 
-    class="fluid">
-    <option value="Shelter">Shelter</option>
-    <option value="Food">Food</option>
-    <option value="Clothing">Clothing</option>
-    <option value="Sleep">Sleep</option>
-    <option value="Sleep">Pack</option>
-  </sm-select>
-  </div>
-
-  <button class="ui button green" type="submit">Create</button>
-  <a class="ui button" (click)="cancelCreate()">Cancel</a>
+        <label>Brand</label>
+        <input [(ngModel)]="newItem.brand" type="text" name="brand" placeholder="Brand">
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input [(ngModel)]="newItem.name" required type="text" name="name" placeholder="Name">
+    </div>
+    <div class="field">
+        <label>Weight</label>
+        <input [(ngModel)]="newItem.weight" required type="decimal" name="weight" placeholder="Weight (oz)">
+    </div>
+    <div class="field">
+        <label>Price</label>
+        <input [(ngModel)]="newItem.price" icon="dollar" type="decimal" name="price" placeholder="Price">
+    </div>
+    <div class="field">
+        <label>Category</label>
+        <sm-select name="category" [(model)]="newItem.category" placeholder="Select category..." class="fluid">
+            <option value="Shelter">Shelter</option>
+            <option value="Food">Food</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Sleep">Sleep</option>
+            <option value="Pack">Pack</option>
+        </sm-select>
+    </div>
+    <button class="ui button green" type="submit">Create</button>
+    <a class="ui button" (click)="cancelCreate()">Cancel</a>
     <div class="ui divider"></div>
 </form>
-
-
 <form class="ui form" #updateItemForm="ngForm" *ngIf="editItem" (ngSubmit)="updateItem()">
-<h4 class="ui horizontal divider header">
+    <h4 class="ui horizontal divider header">
   <i class="tag icon"></i>
   Edit {{item.brand}} {{item.name}}
 </h4>
-  <div class="field">
-    <label>Brand</label>
-    <input [(ngModel)]="item.brand" type="text" name="brand" placeholder="Brand">
-  </div>
-  <div class="field">
-    <label>Name</label>
-    <input [(ngModel)]="item.name" required type="text" name="name" placeholder="Name">
-  </div>
-  <div class="field">
-    <label>Weight</label>
-    <input [(ngModel)]="item.weight" required type="decimal" name="weight" placeholder="Weight (oz)">
-  </div>
-  <div class="field">
-    <label>Price</label>
-    <input [(ngModel)]="item.price" icon="dollar" type="decimal" name="price" placeholder="Price">
-  </div>
     <div class="field">
-    <label>Category</label>
-      <sm-select name="category"
-      [(model)]="item.category"
-    placeholder="Select category..." 
-    class="fluid">
-    <option value="Shelter">Shelter</option>
-    <option value="Food">Food</option>
-    <option value="Clothing">Clothing</option>
-    <option value="Sleep">Sleep</option>
-    <option value="Sleep">Pack</option>
-  </sm-select>
-  </div>
-  <button class="ui button green" type="submit">Update</button>
-  <a class="ui button" (click)="cancelEdit()">Cancel</a>
-      <a class="ui right floated button red" (click)="delete()">Delete</a>
+        <label>Brand</label>
+        <input [(ngModel)]="item.brand" type="text" name="brand" placeholder="Brand">
+    </div>
+    <div class="field">
+        <label>Name</label>
+        <input [(ngModel)]="item.name" required type="text" name="name" placeholder="Name">
+    </div>
+    <div class="field">
+        <label>Weight</label>
+        <input [(ngModel)]="item.weight" required type="decimal" name="weight" placeholder="Weight (oz)">
+    </div>
+    <div class="field">
+        <label>Price</label>
+        <input [(ngModel)]="item.price" icon="dollar" type="decimal" name="price" placeholder="Price">
+    </div>
+    <div class="field">
+        <label>Category</label>
+        <sm-select name="category" [(model)]="item.category" placeholder="Select category..." class="fluid">
+            <option value="Shelter">Shelter</option>
+            <option value="Food">Food</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Sleep">Sleep</option>
+            <option value="Sleep">Pack</option>
+        </sm-select>
+    </div>
+    <button class="ui button green" type="submit">Update</button>
+    <a class="ui button" (click)="cancelEdit()">Cancel</a>
+    <a class="ui right floated button red" (click)="delete()">Delete</a>
 </form>
 <div *ngIf="!createNew && !editItem">
-<h1>Items</h1>
-<button class="fluid ui button blue" *ngIf="!createNew" (click)="createNew=true">Add Item</button>
-<div class="ui divider"></div>
-<div class="ui cards centered">
-  <div class="card" *ngFor="let item of items | async" >
-    <div class="content">
-    <h5 class="ui header">
-         <i class="circular small inverted icon" [ngClass]="{'Shelter': 'teal home','Food':'olive food','Sleep':'blue hotel','Pack':'orange travel'}[item.category]"></i> 
-  <div class="content">
-    {{ item.name }}
-    <div class="sub header">{{ item.brand }}</div>
-  </div>
-</h5>
-      <div class="ui two buttons">
-        <div class="ui blue basic button">{{ item.price | currency:'USD':true:'1.2-2' }}</div>
-        <div class="ui green basic button">{{ item.weight | number:'1.1-5' }} oz</div>
-      </div>
-      <div class="meta">
-        
-      </div>
-      <div class="description">
-        
-      </div>
+    <h1>Items</h1>
+    <button class="fluid ui button blue" *ngIf="!createNew" (click)="createNew=true">Add Item</button>
+    <div class="ui divider"></div>
+    <div class="ui cards centered">
+        <div class="card" *ngFor="let item of items | async">
+            <div class="content">
+                <h5 class="ui header">
+                 <i class="circular small inverted icon" [ngClass]="{'Shelter': 'teal home','Food':'olive food','Sleep':'blue hotel','Pack':'orange travel'}[item.category]"></i> 
+                  <div class="content">
+                    {{ item.name }}
+                    <div class="sub header">{{ item.brand }}</div>
+                  </div>
+                </h5>
+                <div class="ui two buttons">
+                    <div class="ui blue basic button">{{ item.price | currency:'USD':true:'1.2-2' }}</div>
+                    <div class="ui green basic button">{{ item.weight | number:'1.1-5' }} oz</div>
+                </div>
+                <div class="meta">
+                </div>
+                <div class="description">
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="ui fluid basic button" (click)="select(item)">Edit</div>
+            </div>
+        </div>
     </div>
-    <div class="extra content">
-
-              <div class="ui fluid basic button" (click)="select(item)">Edit</div>
-    </div>
-  </div>
 </div>
-</div>
-

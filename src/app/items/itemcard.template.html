@@ -1,0 +1,19 @@
+<div class="content">
+    <h5 class="ui header">
+                 <i class="circular small inverted icon" [ngClass]="{'Shelter': 'teal home','Food':'olive food','Sleep':'blue hotel','Pack':'orange travel'}[(item | async)?.category]"></i> 
+
+                  <div class="content">
+                    {{ (item | async)?.name }}
+                    <div class="sub header">{{ (item | async)?.brand }}</div>
+                  </div>
+                </h5>
+    <div class="ui two buttons">
+        <div class="ui blue basic button">{{ (item | async)?.price | currency:'USD':true:'1.2-2' }}</div>
+        <div class="ui green basic button">{{ (item | async)?.weight | number:'1.1-5' }} oz</div>
+    </div>
+    <div class="meta">
+    </div>
+    <div class="description">
+        <div class="ui fluid red basic button" (click)="remove()">Remove</div>
+    </div>
+</div>

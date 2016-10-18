@@ -1,0 +1,72 @@
+<div class="content">
+    <h2 class="ui header">
+         <i class="circular small tree green icon" ></i> 
+  <div class="content">
+
+    {{ (trip | async)?.name }}
+    <div class="sub header">
+            {{ (trip | async)?.description }}
+    </div>
+  </div>
+</h2>
+<div class="ui statistics">
+  <div class="olive statistic">
+    <div class="value">
+      <i class="calendar icon"></i> {{(trip | async)?.date | date:'shortDate'}} 
+    </div>
+    <div class="label">
+        Begins
+    </div>
+  </div>
+  <div class="blue statistic">
+    <div class="value">
+      {{(trip | async)?.duration}} <i class="moon icon"></i>
+    </div>
+    <div class="label">
+      Nights
+    </div>
+  </div>
+    <div class="yellow statistic">
+    <div class="value">
+      {{(tripItems | async)?.length}} <i class="travel icon"></i>
+    </div>
+    <div class="label">
+      Items
+    </div>
+  </div>
+  <div class="green statistic">
+    <div class="value">
+      {{ totalWeight }} <i class="law icon"></i>
+    </div>
+    <div class="label">
+      total Oz
+    </div>
+  </div>
+</div>
+<div>
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+    <div class="ui divider"></div>
+    <button class="fluid ui button blue" *ngIf="!addItem" (click)="addItem=true">Add Item</button>
+    <form class="ui form" #newItemForm="ngForm" (ngSubmit)="addItemAction()" *ngIf="addItem">
+      <div class="field">
+        <label>Select an item</label>
+        <sm-select name="addItemId" [(model)]="addItemId" placeholder="Select an item..." class="fluid">
+            <option *ngFor="let item of (items | async)" value="{{item.$key}}">{{ item.brand }} {{ item.name }}</option>
+        </sm-select>
+  </div>
+
+        <button class="ui button green" type="submit">Add Item</button>
+        <button class="ui button" (click)="addItem=false">Cancel</button>
+    </form>
+    <div class="ui hidden divider"></div>
+    <div class="ui cards centered">
+        <item-card (removeItem)="removeItem($event)" div class="card" *ngFor="let keyValuePair of (trip | async)?.items | iterable" [itemId]="keyValuePair.key">
+        </item-card>
+    </div>
+</div>

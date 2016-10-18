@@ -31,13 +31,15 @@ export class DashboardComponent {
         this.trip = {};
         this.user = auth.getUser();
         this.newTrip = {
-          userId: this.user["uid"]
+          userId: this.user["uid"],
+          items: []
         };
 
   }
   cancelCreate() {
      this.newTrip = {
-          userId: this.user["uid"]
+          userId: this.user["uid"],
+          items: []
         };
     this.createNew = false;
   }

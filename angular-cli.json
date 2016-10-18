@@ -21,6 +21,7 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/chart.js/dist/Chart.js",
         "../semantic/dist/semantic.min.js"
       ],
       "environments": {
