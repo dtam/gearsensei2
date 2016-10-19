@@ -40,6 +40,25 @@ export class TripdetailPublicComponent implements OnInit {
     'Hygiene',
     'Misc'
   ];
+  public pieChartColors: any[] = [{
+    backgroundColor: [
+      "#F2711C",
+      "#FBBD08",
+      "#B5CC18",
+      "#21BA45",
+      "#00B5AD",
+      "#2185D0",
+      "#6435C9",
+      "#A333C8",
+      "#E03997",
+      "#A5673F",
+      "#767676",
+      "#1B1C1D",
+      "#FF695E",
+      "#FF851B",
+    ]
+  }
+  ];
   public pieChartData: number[] = [];
   public pieChartType: string = 'pie';
 
