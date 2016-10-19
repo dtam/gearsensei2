@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 
 export class ItemcardComponent implements OnInit {
   @Input() itemId: string;
+  @Input() showRemove: string;
   @Output() removeItem = new EventEmitter();
   message: string;
   item: FirebaseObjectObservable<any>;
@@ -22,23 +23,25 @@ export class ItemcardComponent implements OnInit {
   editItem: boolean;
 
   constructor(private auth: Auth, private http: Http, private authHttp: AuthHttp, private af: AngularFire) {
-        this.editItem = false;
-        this.user = auth.getUser();
+    this.editItem = false;
+    this.user = auth.getUser();
   }
-  
+
   ngOnInit(): void {
-    this.item = this.af.database.object('items/'+this.itemId);
+    this.item = this.af.database.object('items/' + this.itemId);
   }
 
   cancelCreate() {
-     this.newItem = {
-          userId: this.user["uid"]
-        };
+    this.newItem = {
+      userId: this.user["uid"]
+    };
     this.createNew = false;
   }
+
   cancelEdit() {
     this.editItem = false;
   }
+
   updateItem() {
     this.item.set({
       name: this.item["name"],
@@ -49,7 +52,24 @@ export class ItemcardComponent implements OnInit {
     });
     this.editItem = false;
   }
+
   remove() {
     this.removeItem.emit(this.itemId);
   }
-};
+
+  getClasses() {
+    return {
+      'Shelter': 'teal home',
+      'Cooking': 'olive food',
+      'Clothing': 'grey spy',
+      'Sleep': 'blue hotel',
+      'Pack': 'orange travel',
+      'Hydration': 'blue theme',
+      'Navigation': 'yellow compass',
+      'Medical': 'red first aid',
+      'Tools': 'grey configure',
+      'Hygiene': 'purple database',
+      'Misc': 'grey cube'
+    };
+  }
+}

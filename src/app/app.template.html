@@ -1,36 +1,36 @@
 <body>
-  <div class="ui fixed menu">
-    <div class="ui container">
-      <a [routerLink]="['']" class="header item">
-        GearSensei
-      </a>
-      <a class="item" *ngIf="auth.authenticated()" routerLink="/dashboard" routerLinkActive="active">
-      <i class="right floated icon road" ></i>
+<div class="ui fixed menu">
+  <div class="ui container">
+    <a [routerLink]="['']" class="header item">
+      GearSensei
+    </a>
+    <a class="item" *ngIf="auth.authenticated()" routerLink="/dashboard" routerLinkActive="active">
+      <i class="right floated icon road"></i>
       Trips</a>
-            <a class="item" *ngIf="auth.authenticated()" routerLink="/gearcloset" routerLinkActive="active">
-            <i class="right floated icon archive" ></i> Inventory</a>
-        <div class="right item">
-          <a class="ui button basic primary" (click)="auth.login()" *ngIf="!auth.authenticated()" >Log-in</a>
-          <a class="ui button basic" (click)="auth.logout()" *ngIf="auth.authenticated()" [routerLink]="['']">Logout</a>
-        </div>
+    <a class="item" *ngIf="auth.authenticated()" routerLink="/gearcloset" routerLinkActive="active">
+      <i class="right floated icon archive"></i> Inventory</a>
+    <div class="right item">
+      <a class="ui button basic primary" (click)="auth.login()" *ngIf="!auth.authenticated()">Log-in</a>
+      <a class="ui button basic" (click)="auth.logout()" *ngIf="auth.authenticated()" [routerLink]="['']">Logout</a>
     </div>
   </div>
+</div>
 
-  <div class="ui main container">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-      <div class="ui section divider"></div>
-      <img src="assets/imgs/favicon.png" class="ui centered mini image">
-      <div class="ui horizontal small divided link list">
-        <a class="item" href="#">Facebook</a>
-        <a class="item" href="#">Instagram</a>
-        <a class="item" href="#">Twitter</a>
-        <a class="item" href="#">Contact Us</a>
-        <a class="item" href="#">Terms and Conditions</a>
-        <a class="item" href="#">Privacy Policy</a>
-      </div>
+<div class="ui main container">
+  <router-outlet></router-outlet>
+</div>
+<div class="ui vertical footer segment">
+  <div class="ui center aligned container">
+    <div class="ui section divider"></div>
+    <img src="assets/imgs/favicon.png" class="ui centered mini image">
+    <div class="ui horizontal small divided link list">
+      <a class="item" href="#">Facebook</a>
+      <a class="item" href="#">Instagram</a>
+      <a class="item" href="#">Twitter</a>
+      <a class="item" href="#">Contact Us</a>
+      <a class="item" href="#">Terms and Conditions</a>
+      <a class="item" href="#">Privacy Policy</a>
     </div>
   </div>
+</div>
 </body>

@@ -1,7 +1,7 @@
 <form class="ui form" #newItemForm="ngForm" (ngSubmit)="create()" *ngIf="createNew">
-<h4 class="ui horizontal divider header">
-  Lets plan a trip!
-</h4>
+  <h4 class="ui horizontal divider header">
+    Lets plan a trip!
+  </h4>
   <div class="field">
     <label>Name</label>
     <input [(ngModel)]="newTrip.name" required type="text" name="name" placeholder="Name">
@@ -10,33 +10,33 @@
     <label>Start Date</label>
     <div class="fields">
       <div class="four wide field">
-      <input disabled value="{{newTrip.date | date:'shortDate'}}">
+        <input disabled value="{{newTrip.date | date:'shortDate'}}">
       </div>
       <div class="twelve wide field">
-      <datepicker [(ngModel)]="newTrip.date" name="tripdate"></datepicker>
+        <datepicker [(ngModel)]="newTrip.date" name="tripdate"></datepicker>
       </div>
     </div>
   </div>
-    <div class="field">
+  <div class="field">
     <label>Duration</label>
     <input [(ngModel)]="newTrip.duration" required type="number" name="duration" placeholder="Duration (Nights)">
   </div>
-    <div class="field">
+  <div class="field">
     <label>Description</label>
-    <textarea rows="2" [(ngModel)]="newTrip.description" name="description" ></textarea>
+    <textarea rows="2" [(ngModel)]="newTrip.description" name="description"></textarea>
   </div>
 
   <button class="ui button green" type="submit">Create</button>
   <a class="ui button" (click)="cancelCreate()">Cancel</a>
-    <div class="ui divider"></div>
+  <div class="ui divider"></div>
 </form>
 
 
 <form class="ui form" #updateItemForm="ngForm" *ngIf="editItem" (ngSubmit)="updateItem()">
-<h4 class="ui horizontal divider header">
-  Editing {{trip.name}}
-</h4>
-   <div class="field">
+  <h4 class="ui horizontal divider header">
+    Editing {{trip.name}}
+  </h4>
+  <div class="field">
     <label>Name</label>
     <input [(ngModel)]="trip.name" required type="text" name="name" placeholder="Name">
   </div>
@@ -44,55 +44,55 @@
     <label>Start Date</label>
     <div class="fields">
       <div class="four wide field">
-      <input disabled value="{{trip.date | date:'shortDate'}}">
+        <input disabled value="{{trip.date | date:'shortDate'}}">
       </div>
       <div class="twelve wide field">
-      <datepicker [(ngModel)]="trip.date" name="tripdate"></datepicker>
+        <datepicker [(ngModel)]="trip.date" name="tripdate"></datepicker>
       </div>
     </div>
   </div>
-    <div class="field">
+  <div class="field">
     <label>Duration</label>
     <input [(ngModel)]="trip.duration" required type="number" name="duration" placeholder="Duration (Nights)">
   </div>
-    <div class="field">
+  <div class="field">
     <label>Description</label>
-    <textarea rows="2" [(ngModel)]="trip.description" name="description" ></textarea>
+    <textarea rows="2" [(ngModel)]="trip.description" name="description"></textarea>
   </div>
   <button class="ui button green" type="submit">Update</button>
   <a class="ui button" (click)="cancelEdit()">Cancel</a>
-      <a class="ui right floated button red" (click)="delete()">Delete</a>
+  <a class="ui right floated button red" (click)="delete()">Delete</a>
 </form>
 <div *ngIf="!createNew && !editItem">
-<h1>Trips</h1>
-<button class="fluid ui button blue" *ngIf="!createNew" (click)="createNew=true">Plan a trip</button>
+  <h1>Trips</h1>
+  <button class="fluid ui button blue" *ngIf="!createNew" (click)="createNew=true">Plan a trip</button>
 
-<div class="ui divided items">
-<div class="ui cards centered">
-  <div class="card" *ngFor="let trip of trips | async" >
-    <div class="content">
-    <h5 class="ui header">
-         <i class="circular small inverted tree olive icon" ></i> 
-  <div class="content">
-    {{ trip.name }}
-    <div class="sub header">{{trip.date | date:'shortDate'}} - {{trip.duration}} nights</div>
-  </div>
-</h5>
+  <div class="ui divided items">
+    <div class="ui cards centered">
+      <div class="card" *ngFor="let trip of trips | async">
+        <div class="content">
+          <h5 class="ui header">
+            <i class="circular small inverted tree olive icon"></i>
+            <div class="content">
+              {{ trip.name }}
+              <div class="sub header">{{trip.date | date:'shortDate'}} - {{trip.duration}} nights</div>
+            </div>
+          </h5>
 
-      <div class="meta">
-        
-      </div>
-      <div class="description">
-        {{ trip.description }}
+          <div class="meta">
+
+          </div>
+          <div class="description">
+            {{ trip.description }}
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <div class="ui blue basic button" (click)="select(trip)">Edit Details</div>
+            <div class="ui green basic button" [routerLink]="['/trips',trip.$key]">Edit Gear</div>
+          </div>
+        </div>
       </div>
     </div>
-          <div class="extra content">
-              <div class="ui two buttons">
-        <div class="ui blue basic button" (click)="select(trip)">Edit Details</div>
-        <div class="ui green basic button" [routerLink]="['/trips',trip.$key]">Edit Gear</div>
-      </div>
-      </div>
   </div>
-</div>
-</div>
 

@@ -1,5 +1,5 @@
 import { NgModule }            from '@angular/core';
-import { BrowserModule  }      from '@angular/platform-browser';
+import { BrowserModule }      from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgSemanticModule } from "ng-semantic";
@@ -13,11 +13,14 @@ import { HomeComponent }       from './home.component';
 import { DashboardComponent } from './dashboard.component';
 import { GearclosetComponent } from './gearcloset.component';
 import { TripdetailComponent } from './trip/tripdetail.component';
+import { TripdetailPublicComponent } from './trip/tripdetailpublic.component';
 import { ItemcardComponent } from './items/itemcard.component';
 import { AuthGuard } from './shared/auth.guard';
 import { IterablePipe } from './shared/iterable.pipe';
-import { routing,
-         appRoutingProviders } from './app.routes';
+import {
+  routing,
+  appRoutingProviders
+} from './app.routes';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 
 const firebaseAuthConfig = {
@@ -27,39 +30,41 @@ const firebaseAuthConfig = {
 
 // Must export the config
 export const firebaseConfig = {
-    apiKey: "AIzaSyAshH7RYjLOk78CLVqI6Cjj-gSlw5u6vzs",
-    authDomain: "gearsensei2.firebaseapp.com",
-    databaseURL: "https://gearsensei2.firebaseio.com",
-    storageBucket: "gearsensei2.appspot.com",
-    messagingSenderId: "625470581650"
-  };
+  apiKey: "AIzaSyAshH7RYjLOk78CLVqI6Cjj-gSlw5u6vzs",
+  authDomain: "gearsensei2.firebaseapp.com",
+  databaseURL: "https://gearsensei2.firebaseio.com",
+  storageBucket: "gearsensei2.appspot.com",
+  messagingSenderId: "625470581650"
+};
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        DashboardComponent,
-        GearclosetComponent,
-        TripdetailComponent,
-        ItemcardComponent,
-        DatePicker,
-        IterablePipe
-    ],
-    providers:    [
-        appRoutingProviders,
-        AuthGuard,
-        AUTH_PROVIDERS
-    ],
-    imports:      [
-        BrowserModule,
-        AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
-        routing,
-        FormsModule,
-        HttpModule,
-        JsonpModule,
-        NgSemanticModule,
-        ChartsModule
-    ],
-    bootstrap:    [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    DashboardComponent,
+    GearclosetComponent,
+    TripdetailComponent,
+    TripdetailPublicComponent,
+    ItemcardComponent,
+    DatePicker,
+    IterablePipe
+  ],
+  providers: [
+    appRoutingProviders,
+    AuthGuard,
+    AUTH_PROVIDERS
+  ],
+  imports: [
+    BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    routing,
+    FormsModule,
+    HttpModule,
+    JsonpModule,
+    NgSemanticModule,
+    ChartsModule
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

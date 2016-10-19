@@ -10,10 +10,10 @@ import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'dashboard',
-  templateUrl: './tripdetail.template.html'
+  templateUrl: './tripdetailpublic.template.html'
 })
 
-export class TripdetailComponent implements OnInit {
+export class TripdetailPublicComponent implements OnInit {
   message: string;
   trip: FirebaseObjectObservable<any>;
   items: FirebaseListObservable<any[]>;
@@ -44,18 +44,8 @@ export class TripdetailComponent implements OnInit {
   public pieChartType: string = 'pie';
 
   constructor(private auth: Auth, private http: Http, private authHttp: AuthHttp, private af: AngularFire, private location: Location, private route: ActivatedRoute) {
-    this.items = af.database.list('items', {
-      query: {
-        orderByChild: 'userId',
-        equalTo: auth.getUser()["uid"]
-      }
-    });
 
-    this.items.subscribe(items=> {
-      this.itemsList = items;
-    });
     this.addItemId = '';
-    this.user = auth.getUser();
     this.addItem = false;
     this.originalItems = {};
     this.totalWeight = 0;
@@ -92,8 +82,7 @@ export class TripdetailComponent implements OnInit {
             weight = weight + +item.weight;
           }
 
-          let labels = [];
-          let data = []
+          let data = [];
 
           for (let category of this.pieChartLabels) {
             if (categoryWeights[category]) {
@@ -109,51 +98,6 @@ export class TripdetailComponent implements OnInit {
     });
   }
 
-  addItemAction() {
-    if (this.addItemId == "") {
-      return;
-    }
-
-    if (this.originalItems == undefined) {
-      this.originalItems = {};
-      this.originalItems[this.addItemId] = true;
-      this.trip.update({
-        items: this.originalItems
-      });
-    } else {
-      this.originalItems[this.addItemId] = true;
-      this.trip.update({
-        items: this.originalItems
-      });
-    }
-
-    for (let item of this.itemsList) {
-      if (item.$key == this.addItemId) {
-        if (item.trips == undefined) {
-          let newTrips = {};
-          newTrips[this.tripId] = true;
-          this.items.update(item.$key, {trips: newTrips})
-        } else {
-          item.trips[this.tripId] = true;
-          this.items.update(item.$key, {trips: item.trips});
-        }
-      }
-    }
-
-    this.addItemId = "";
-    this.addItem = false;
-
-  }
-
-  updateItem() {
-    this.trip.set({
-      name: this.trip["name"],
-      date: this.trip["date"],
-      duration: this.trip["duration"],
-      description: this.trip["description"]
-    });
-  }
-
   // events
   public chartClicked(e: any): void {
     //console.log(e);
@@ -163,19 +107,4 @@ export class TripdetailComponent implements OnInit {
     //console.log(e);
   }
 
-  removeItem(item) {
-    if (this.originalItems[item]) {
-      delete this.originalItems[item];
-    }
-    this.trip.update({
-      items: this.originalItems
-    });
-
-    for (let itemObj of this.itemsList) {
-      if (itemObj.$key == item) {
-        delete itemObj.trips[this.tripId];
-        this.tripItems.update(itemObj.$key, {trips: itemObj.trips});
-      }
-    }
-  }
 }

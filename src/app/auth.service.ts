@@ -7,7 +7,7 @@ export class Auth {
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(user => {
-      if(user) {
+      if (user) {
         // user logged in
         this.user = user;
       }
@@ -37,4 +37,5 @@ export class Auth {
     this.af.auth.logout();
     this.user = undefined;
   };
-};
+}
+;

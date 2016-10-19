@@ -19,45 +19,51 @@ export class DashboardComponent {
   user: Object;
   createNew: boolean;
   editItem: boolean;
+
   constructor(private auth: Auth, private http: Http, private authHttp: AuthHttp, af: AngularFire) {
-        this.trips = af.database.list('trips',{
-          query: {
-            orderByChild: 'userId',
-            equalTo: auth.getUser()["uid"]
-          }
-        });
-        this.createNew = false;
-        this.editItem = false;
-        this.trip = {};
-        this.user = auth.getUser();
-        this.newTrip = {
-          userId: this.user["uid"],
-          items: []
-        };
+    this.trips = af.database.list('trips', {
+      query: {
+        orderByChild: 'userId',
+        equalTo: auth.getUser()["uid"]
+      }
+    });
+    this.createNew = false;
+    this.editItem = false;
+    this.trip = {};
+    this.user = auth.getUser();
+    this.newTrip = {
+      userId: this.user["uid"],
+      items: []
+    };
 
   }
+
   cancelCreate() {
-     this.newTrip = {
-          userId: this.user["uid"],
-          items: []
-        };
+    this.newTrip = {
+      userId: this.user["uid"],
+      items: []
+    };
     this.createNew = false;
   }
+
   cancelEdit() {
     this.trip = {};
     this.editItem = false;
   }
+
   create(newName: string, newBrand: string, newPrice: number, newWeight: number) {
     this.trips.push(this.newTrip);
     this.newTrip = {
-          userId: this.user["uid"]
-        };
+      userId: this.user["uid"]
+    };
     this.createNew = false;
   }
+
   select(trip: Object) {
     this.trip = trip;
     this.editItem = true;
   }
+
   updateItem() {
     this.trips.update(this.trip["$key"], {
       name: this.trip["name"],
@@ -68,9 +74,11 @@ export class DashboardComponent {
     this.trip = {};
     this.editItem = false;
   }
+
   delete() {
     this.trips.remove(this.trip["$key"]);
     this.trip = {};
     this.editItem = false;
   }
-};
+}
+;

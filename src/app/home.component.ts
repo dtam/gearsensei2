@@ -7,5 +7,7 @@ import { Auth }      from './auth.service';
 })
 
 export class HomeComponent {
-  constructor(private auth: Auth) {}
-};
+  constructor(private auth: Auth) {
+  }
+}
+;

@@ -91,7 +91,7 @@
   </form>
   <div class="ui hidden divider"></div>
   <div class="ui cards centered">
-    <item-card (removeItem)="removeItem($event)" div class="card"
+    <item-card (removeItem)="removeItem($event)" div class="card" [showRemove]="false"
                *ngFor="let keyValuePair of (trip | async)?.items | iterable" [itemId]="keyValuePair.key">
     </item-card>
   </div>

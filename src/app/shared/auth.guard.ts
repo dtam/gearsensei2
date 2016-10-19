@@ -1,4 +1,3 @@
-
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
@@ -12,7 +11,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private auth: FirebaseAuth, private router: Router) {}
+  constructor(private auth: FirebaseAuth, private router: Router) {
+  }
 
   canActivate(): Observable<boolean> {
     return this.auth
