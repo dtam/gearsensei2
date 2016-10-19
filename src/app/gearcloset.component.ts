@@ -249,18 +249,17 @@ export class GearclosetComponent {
 
   getClasses() {
     return {
-      'Shelter': 'teal home',
-      'Cooking': 'olive food',
-      'Clothing': 'grey spy',
-      'Sleep': 'blue hotel',
-      'Pack': 'orange travel',
+      'Shelter': 'orange home',
+      'Cooking': 'yellow food',
+      'Clothing': 'olive spy',
+      'Sleep': 'green hotel',
+      'Pack': 'teal travel',
       'Hydration': 'blue theme',
-      'Navigation': 'yellow compass',
-      'Medical': 'red first aid',
-      'Tools': 'grey configure',
-      'Hygiene': 'purple database',
+      'Navigation': 'violet compass',
+      'Medical': 'purple first aid',
+      'Tools': 'pink configure',
+      'Hygiene': 'brown database',
       'Misc': 'grey cube'
     };
   }
 }
-;

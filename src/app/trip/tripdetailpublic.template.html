@@ -78,18 +78,6 @@
   </div>
 
   <div class="ui divider"></div>
-  <button class="fluid ui button blue" *ngIf="!addItem" (click)="addItem=true">Add Item</button>
-  <form class="ui form" #newItemForm="ngForm" (ngSubmit)="addItemAction()" *ngIf="addItem">
-    <div class="field">
-      <label>Select an item</label>
-      <sm-select name="addItemId" [(model)]="addItemId" placeholder="Select an item..." class="fluid">
-        <option *ngFor="let item of (items | async)" value="{{item.$key}}">{{ item.brand }} {{ item.name }}</option>
-      </sm-select>
-    </div>
-
-    <button class="ui button green" type="submit">Add Item</button>
-    <button class="ui button" (click)="addItem=false">Cancel</button>
-  </form>
   <div class="ui hidden divider"></div>
   <div class="ui cards centered">
     <item-card (removeItem)="removeItem($event)" div class="card" [showRemove]="false"
